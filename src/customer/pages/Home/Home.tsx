@@ -11,19 +11,19 @@ import taurus from "./taurus.png";
 const Home = () => {
   return (
     <>
-      <div className="space-y-5 lg:space-y-10 relative pb-20">
+      <div className="relative pb-20 space-y-5 lg:space-y-10">
         <ElectricCategory />
         <CategoryGrid />
 
         <div className="pt-20">
-          <h1 className="text-lg lg:text-4xl font-bold text-primary-color pb-5 lg:pb-10 text-center">
+          <h1 className="pb-5 text-lg font-bold text-center lg:text-4xl text-primary-color lg:pb-10">
             TODAY'S DEALS
           </h1>
           <Deal />
         </div>
 
         <section className="py-20">
-          <h1 className="text-lg lg:text-4xl font-bold text-primary-color pb-5 lg:pb-10 text-center">
+          <h1 className="pb-5 text-lg font-bold text-center lg:text-4xl text-primary-color lg:pb-10">
             SHOP BY CATEGORY
           </h1>
           <ShopByCategory />
@@ -32,7 +32,6 @@ const Home = () => {
         <section className=" lg:px-20 relative h-[200px] lg:h-[450px] object-cover">
           <img
             className="w-full h-full"
-            // src="https://static.vecteezy.com/system/resources/thumbnails/008/295/823/small/abstract-white-fluid-wave-banner-template-free-vector.jpg"
             src={taurus}
             alt=""
           />
@@ -40,9 +39,9 @@ const Home = () => {
             <h1>Sell your product</h1>
             <p className="text-lg md:text-2xl">
               With
-              <span className="logo text-black">Taurus Fifteen</span>
+              <span className="text-black logo">Taurus Fifteen</span>
             </p>
-            <div className="pt-6  flex justify-center">
+            <div className="flex justify-center pt-6">
               <Button startIcon={<Storefront />} variant="contained">
                 Become Seller
               </Button>
@@ -51,29 +50,29 @@ const Home = () => {
         </section>
         {/* <section className="lg:px-20 relative h-[200px] lg:h-[450px] object-cover">
           <img
-            className="w-full h-full object-cover"
+            className="object-cover w-full h-full"
             src="https://static.vecteezy.com/system/resources/thumbnails/008/295/823/small/abstract-white-fluid-wave-banner-template-free-vector.jpg"
             alt=""
           />
 
-          <div className="absolute top-1/2 left-6 lg:left-20 transform -translate-y-1/2 flex items-center space-x-6">
+          <div className="absolute flex items-center space-x-6 transform -translate-y-1/2 top-1/2 left-6 lg:left-20">
             <img
               src={logo}
               alt="Taurus Fifteen Logo"
-              className="h-16 lg:h-28 w-auto"
+              className="w-auto h-16 lg:h-28"
             />
 
             <div className="text-gray-800">
-              <h1 className="font-bold text-xl lg:text-4xl">
+              <h1 className="text-xl font-bold lg:text-4xl">
                 Sell your product
               </h1>
-              <p className="text-sm lg:text-2xl p-3">
+              <p className="p-3 text-sm lg:text-2xl">
                 With
-                <span className="logo text-black">Taurus Fifteen</span>
+                <span className="text-black logo">Taurus Fifteen</span>
               </p>
             </div>
 
-            <div className="pt-6  flext justify-center ">
+            <div className="justify-center pt-6 flext ">
               <Button startIcon={<Storefront />} variant="contained">
                 Become Seller
               </Button>

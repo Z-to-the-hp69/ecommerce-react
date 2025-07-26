@@ -1,7 +1,7 @@
 import React from "react";
 
-const filterSection = () => {
-  return <div>filterSection</div>;
+const FilterSection = () => {
+  return <div>FilterSection</div>;
 };
 
-export default filterSection;
+export default FilterSection;

@@ -28,7 +28,7 @@ const Navbar = () => {
   const [showCategorySheet, setShowCategorySheet] = React.useState(false);
 
   return (
-    <>
+    <div className="pt-[70px]">
       <Box
         className="bg-white shadow-md fixed top-0 left-0 right-0"
         sx={{ zIndex: 2 }}
@@ -107,7 +107,7 @@ const Navbar = () => {
           </div>
         )}
       </Box>
-    </>
+    </div>
   );
 };
 

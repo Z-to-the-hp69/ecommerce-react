@@ -33,7 +33,7 @@
 }
 
 .thin-line-through {
-  position: absolute;
+  /* position: absolute; */
   text-decoration: line-through;
   text-decoration-thickness: 1px;
 }

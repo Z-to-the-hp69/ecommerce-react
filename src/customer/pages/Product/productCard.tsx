@@ -47,7 +47,7 @@ const ProductCard = () => {
             />
           ))}
 
-          {
+          {isHovered && (
             <div className="indicator    flex flex-col  items-center space-y-2">
               <div className="flex  gap-3">
                 <Button variant="contained" color="secondary">
@@ -59,7 +59,20 @@ const ProductCard = () => {
                 </Button>
               </div>
             </div>
-          }
+          )}
+        </div>
+
+        <div className="details pt-3 space-y-1 group-hover-effect rounded-md ">
+          <div className="name">
+            <h1>Burmese Studio</h1>
+            <p>Blue Shirt</p>
+          </div>
+
+          <div className="price flex items-center gap-3 ">
+            <span className="font-semibold text-gray-800 ">40000Ks</span>
+            <span className="thin-line-through text-gray-400 ">45000Ks</span>
+            <span className="text-primary font-semibold">50%</span>
+          </div>
         </div>
       </div>
     </>

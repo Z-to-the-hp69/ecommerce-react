@@ -18,7 +18,8 @@ import {
   Storefront,
 } from "@mui/icons-material";
 import CategorySheet from "./CategorySheet";
-import { mainCategory } from "../../../data/mainCategory";
+//import { mainCategory } from "../../../data/category/mainCategory";
+import { mainCategory } from "../../../data/category/mainCategory";
 
 const Navbar = () => {
   const theme = useTheme();

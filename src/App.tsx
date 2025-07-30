@@ -9,6 +9,11 @@ import Home from "./customer/pages/Home/Home";
 
 //import Product from "./customer/pages/Product/Product";
 import Product from "./customer/pages/Product/Product";
+import PageDetails from "./customer/pages/ProductDetails/ProductDetails";
+import ProductDetails from "./customer/pages/ProductDetails/ProductDetails";
+import Review from "./customer/pages/Review/Review";
+import Cart from "./customer/pages/Cart/Cart";
+import Checkout from "./customer/pages/Checkout/Checkout";
 
 function App() {
   return (
@@ -16,7 +21,11 @@ function App() {
       <div>
         <Navbar />
         {/* <Home /> */}
-        <Product />
+        {/* <Product /> */}
+        {/* <ProductDetails /> */}
+        {/* <Review /> */}
+        {/* <Cart />   */}
+        <Checkout />
       </div>
     </ThemeProvider>
   );

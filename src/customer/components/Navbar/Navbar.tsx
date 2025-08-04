@@ -20,6 +20,7 @@ import {
 import CategorySheet from "./CategorySheet";
 //import { mainCategory } from "../../../data/category/mainCategory";
 import { mainCategory } from "../../../data/category/mainCategory";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const theme = useTheme();
@@ -27,6 +28,7 @@ const Navbar = () => {
   //large screen -true
   const [selectedCategory, setSelectedCategory] = React.useState("gents");
   const [showCategorySheet, setShowCategorySheet] = React.useState(false);
+  const navigate = useNavigate();
 
   return (
     <div className="pt-[70px]">
@@ -42,7 +44,10 @@ const Navbar = () => {
                   <MenuIcon />
                 </IconButton>
               )}
-              <h1 className="logo cursor-pointer text-lg md:text-2xl text-[#000000]">
+              <h1
+                onClick={() => navigate("/")}
+                className="logo cursor-pointer text-lg md:text-2xl text-[#000000]"
+              >
                 Taurus Fifteen
               </h1>
             </div>
@@ -69,8 +74,11 @@ const Navbar = () => {
               <SearchIcon />
             </IconButton>
 
-            {false ? (
-              <Button className="flex items-center gap-2">
+            {true ? (
+              <Button
+                onClick={() => navigate("/account/orders")}
+                className="flex items-center gap-2"
+              >
                 <Avatar
                   sx={{ width: 29, height: 29 }}
                   src="https://i.pinimg.com/736x/9d/41/32/9d41323ed75a9c7a74bedb7202f07d93.jpg"
@@ -84,7 +92,7 @@ const Navbar = () => {
               <FavoriteBorder sx={{ fontSize: 29 }} />
             </IconButton>
 
-            <IconButton>
+            <IconButton onClick={() => navigate("/cart")}>
               <AddShoppingCart
                 className="text-gray-700"
                 sx={{ fontSize: 29 }}

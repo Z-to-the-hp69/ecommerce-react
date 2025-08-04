@@ -1,5 +1,13 @@
-import { Box, Button, Modal, Typography } from "@mui/material";
-import React from "react";
+import {
+  Box,
+  Button,
+  FormControlLabel,
+  Modal,
+  Radio,
+  RadioGroup,
+  Typography,
+} from "@mui/material";
+import React, { useState } from "react";
 import AddressCard from "./AddressCard";
 import AddressForm from "./AddressForm";
 import PricingCart from "../Cart/PricingCart";
@@ -15,10 +23,30 @@ const style = {
   p: 4,
 };
 
+const paymentGatewayList = [
+  {
+    value: "RAZORPAY",
+    image:
+      "https://d6xcmfyh68wv8.cloudfront.net/newsroom-content/uploads/2024/05/Razorpay-Logo.jpg",
+    label: "",
+  },
+  {
+    value: "STRIPE",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Stripe_Logo%2C_revised_2016.svg/1200px-Stripe_Logo%2C_revised_2016.svg.png",
+    label: "",
+  },
+];
+
 const Checkout = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [paymentGateway, setPaymentGateway] = useState("RAZORPAY");
+
+  const handlePaymentChange = (e: any) => {
+    setPaymentGateway(e.target.value);
+  };
   return (
     <>
       <div className="pt-10 px-5 sm:px-10  md:px-44 lg:px-60 min-h-screen">
@@ -44,6 +72,38 @@ const Checkout = () => {
           </div>
 
           <div>
+            <div>
+              <div className="space-y-3 border p-5  rounded-md">
+                <h1 className="text-pink-600 font-medium  pb-2 text-center">
+                  Choose paymnet Gateway
+                </h1>
+                <RadioGroup
+                  row
+                  aria-labelledby="demo-row-radio-buttons-group-label"
+                  name="row-radio-buttons-group"
+                  className="flex justify-between pr-0"
+                  onChange={handlePaymentChange}
+                  value={paymentGateway}
+                >
+                  {paymentGatewayList.map((item) => (
+                    <FormControlLabel
+                      className="border w-[45%] pr-2 rounded-md flex  justify-center"
+                      value={item.value}
+                      control={<Radio />}
+                      label={
+                        <img
+                          className={`${
+                            item.value == "stripe" ? "w-14" : ""
+                          }object-cover`}
+                          src={item.image}
+                          alt={item.label}
+                        />
+                      }
+                    />
+                  ))}
+                </RadioGroup>
+              </div>
+            </div>
             <div className="border rounded-md">
               <PricingCart />
               <div className="p-5">

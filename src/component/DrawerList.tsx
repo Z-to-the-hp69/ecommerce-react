@@ -1,0 +1,82 @@
+import { Divider, ListItemIcon, ListItemText } from "@mui/material";
+import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+interface menuItem {
+  name: string;
+  path: string;
+  icon: any;
+  activeIcon: any;
+}
+
+// Correct interface definition
+interface DrawerListProps {
+  menu: menuItem[]; // Replace 'any' with a specific type if available
+  menu2: menuItem[];
+  toggleDrawer: () => void;
+}
+
+const DrawerList = ({ menu, menu2, toggleDrawer }: DrawerListProps) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  return (
+    <div className="h-full">
+      <div className="flex flex-col justify-between h-full w-[300px] border-r py-5">
+        {/* <div> */}
+        <div className="space-y-2">
+          {/* You can render your menu items here */}
+          {menu.map((item, index: number) => (
+            <div
+              onClick={() => navigate(item.path)}
+              className="pr-9 cursor-pointer"
+              key={index}
+            >
+              <p
+                className={`${
+                  item.path == location.pathname
+                    ? "bg-gray-600 text-white"
+                    : "text-gray-800"
+                }
+                  flex  items-center px-5 py-3  rounded-r-full`}
+              >
+                <ListItemIcon>
+                  {item.path == location.pathname ? item.activeIcon : item.icon}
+                </ListItemIcon>
+                <ListItemText primary={item.name} />
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <Divider />
+
+        <div className="space-y-2">
+          {/* You can render your menu items here */}
+          {menu2.map((item, index: number) => (
+            <div
+              onClick={() => navigate(item.path)}
+              className="pr-9 cursor-pointer"
+              key={index}
+            >
+              <p
+                className={`${
+                  item.path == location.pathname
+                    ? "bg-gray-600 text-white"
+                    : "text-gray-800"
+                }
+                  flex  items-center px-5 py-3  rounded-r-full`}
+              >
+                <ListItemIcon>
+                  {item.path == location.pathname ? item.activeIcon : item.icon}
+                </ListItemIcon>
+                <ListItemText primary={item.name} />
+              </p>
+            </div>
+          ))}
+        </div>
+        {/* </div> */}
+      </div>
+    </div>
+  );
+};
+
+export default DrawerList;

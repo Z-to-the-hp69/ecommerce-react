@@ -355,7 +355,7 @@ const AddProduct = () => {
                 {formik.values.category2 &&
                   childCategory(
                     categoryThree[formik.values.category],
-                    formik.values.category2
+                    formik.values.category
                   )?.map((item: any) => (
                     <MenuItem value={item.categoryId}>{item.name}</MenuItem>
                   ))}

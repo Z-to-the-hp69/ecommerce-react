@@ -18,6 +18,8 @@ import Account from "./customer/pages/Account/Account";
 import { Route, Routes } from "react-router-dom";
 import BecomeSeller from "./customer/pages/Become Seller/BecomeSeller";
 import SellerDashBoard from "./seller/pages/sellerDashboard/SellerDashBoard";
+import AdminDashboard from "./admin/Pages/Dashboard/AdminDashboard";
+
 
 function App() {
   return (
@@ -44,6 +46,7 @@ function App() {
           <Route path="/account/*" element={<Account />} />
           <Route path="/become-seller" element={<BecomeSeller />} />
           <Route path="/seller/*" element={<SellerDashBoard />} />
+          <Route path="/admin/*" element={<AdminDashboard />} />
         </Routes>
       </div>
     </ThemeProvider>

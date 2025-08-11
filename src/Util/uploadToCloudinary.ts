@@ -9,7 +9,7 @@ export const uploadToCloudinary = async (pics: any) => {
     data.append("cloud_name", cloud_name);
 
     const res = await fetch(
-      "https://api.cloudinary.com/v1_1/dyxdfzoho/upload",
+      "https://api.cloudinary.com/v1_1/dyxdfzoho/image/upload",
       {
         method: "POST",
         body: data,

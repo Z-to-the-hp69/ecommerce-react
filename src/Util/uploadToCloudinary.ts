@@ -1,10 +1,10 @@
-export const uploadToCloudinary = async (pics: any) => {
+export const uploadToCloudinary = async (file: any) => {
   const cloud_name = "dyxdfzoho";
-  const upload_preset = "ml-default";
+  const upload_preset = "ml_default";
 
-  if (pics) {
+  if (file) {
     const data = new FormData();
-    data.append("file", pics);
+    data.append("file", file);
     data.append("upload_preset", upload_preset);
     data.append("cloud_name", cloud_name);
 

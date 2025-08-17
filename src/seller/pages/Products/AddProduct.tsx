@@ -36,6 +36,8 @@ import Box from "@mui/material/Box";
 import { gentLevelTwo } from "../../../data/category/level two/gentLevelTwo";
 import { gentLevelThree } from "../../../data/category/level three/gentLevelThree";
 import { colors } from "../../../data/filter/color";
+import { useAppDispatch } from "../../../State/Store";
+import { createProduct } from "../../../State/seller/sellerProductSlice";
 
 const categoryTwo: { [key: string]: any[] } = {
   gents: gentLevelTwo,
@@ -56,6 +58,8 @@ const AddProduct = () => {
 
   const [snackbarOpen, setOpenSnackbar] = useState(false);
 
+  const dispatch = useAppDispatch();
+
   const formik = useFormik({
     initialValues: {
       title: "",
@@ -73,6 +77,9 @@ const AddProduct = () => {
     // validationSchema: validationSchema,
     onSubmit: (values) => {
       console.log(values);
+      dispatch(
+        createProduct({ request: values, jwt: localStorage.getItem("jwt") })
+      );
     },
   });
 
@@ -340,10 +347,10 @@ const AddProduct = () => {
               error={formik.touched.category && Boolean(formik.errors.category)}
               required
             >
-              <InputLabel id="category-label">Third Category</InputLabel>
+              <InputLabel id="category3-label">Third Category</InputLabel>
               <Select
-                labelId="category-label"
-                id="category"
+                labelId="category3-label"
+                id="category3"
                 name="category3"
                 value={formik.values.category3}
                 onChange={formik.handleChange}
@@ -355,7 +362,7 @@ const AddProduct = () => {
                 {formik.values.category2 &&
                   childCategory(
                     categoryThree[formik.values.category],
-                    formik.values.category
+                    formik.values.category2
                   )?.map((item: any) => (
                     <MenuItem value={item.categoryId}>{item.name}</MenuItem>
                   ))}

@@ -5,6 +5,8 @@ import Order from "./Order";
 import OrderDetail from "./OrderDetail";
 import UserDetail from "./UserDetail";
 import Address from "./Address";
+import { useAppDispatch } from "../../../State/Store";
+import { logout } from "../../../State/AuthSlice";
 
 const menu = [
   { name: "orders", path: "/account/orders" },
@@ -17,8 +19,14 @@ const menu = [
 const Account = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useAppDispatch();
 
-  const handleClick = (item: any) => navigate(item.path);
+  const handleClick = (item: any) => {
+    if (item.path == "/") {
+      dispatch(logout(navigate));
+    }
+    navigate(item.path);
+  };
 
   return (
     <div className="px-5 lg:px-52 min-h-screen mt-10">

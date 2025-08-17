@@ -3,24 +3,21 @@ import "./ProductCard.css"; // Assuming you have a CSS file for styles
 import { Button } from "@mui/material";
 import { Favorite, ModeComment } from "@mui/icons-material";
 import { teal } from "@mui/material/colors";
+import { Product } from "../../../types/ProductTypes";
+import { useNavigate } from "react-router-dom";
 
-const images = [
-  "https://media.sisburma.com/wp-content/uploads/2025/05/31104529/13-1.jpg",
-  "https://media.sisburma.com/wp-content/uploads/2025/05/31104515/7-2.jpg",
-  "https://media.sisburma.com/wp-content/uploads/2025/06/27145226/19.jpg",
-  "https://media.sisburma.com/wp-content/uploads/2025/06/27145526/13.jpg",
-  "https://media.sisburma.com/wp-content/uploads/2025/06/27145514/1-1.jpg",
-];
-
-const ProductCard = () => {
+const ProductCard = ({ item }: { item: Product }) => {
   const [currentImage, setCurrentImage] = React.useState(0);
   const [isHovered, setIsHovered] = React.useState(false);
+  const navigate = useNavigate();
+  console.log("Images:", item.images);
 
   useEffect(() => {
     let interval: any;
     if (isHovered) {
       interval = setInterval(() => {
-        setCurrentImage((prev) => (prev + 1) % images.length);
+        setCurrentImage((prev) => (prev + 1) % item.images.length); //item.
+        // console.log(item.images);
       }, 1000);
     } else if (interval) {
       clearInterval(interval);
@@ -28,19 +25,28 @@ const ProductCard = () => {
     }
     return () => clearInterval(interval); // Clear interval on unmount or when isHovered changes
   }, [isHovered]);
+  // console.log("img", item.images);
 
   return (
     <>
-      <div className="group px-4 relative">
+      <div
+        onClick={() =>
+          navigate(
+            `/product-details/${item.category?.categoryId}/${item.title}/${item.id}`
+          )
+        }
+        className="group px-4 relative"
+      >
         <div
           className="card"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          {images.map((image, index) => (
+          {item.images.map((item, index) => (
             <img
+              key={index}
               className="card-media object-top"
-              src={image}
+              src={item}
               style={{
                 transform: `translateX(${(index - currentImage) * 100}%)`,
               }}
@@ -64,14 +70,20 @@ const ProductCard = () => {
 
         <div className="details pt-3 space-y-1 group-hover-effect rounded-md ">
           <div className="name">
-            <h1>Burmese Studio</h1>
-            <p>Blue Shirt</p>
+            <h1>{item.seller?.businessDetails.businessName}</h1>
+            <p>{item.title}</p>
           </div>
 
           <div className="price flex items-center gap-3 ">
-            <span className="font-semibold text-gray-800 ">40000Ks</span>
-            <span className="thin-line-through text-gray-400 ">45000Ks</span>
-            <span className="text-primary font-semibold">50%</span>
+            <span className="font-semibold text-gray-800 ">
+              {item.sellingPrice}Ks
+            </span>
+            <span className="thin-line-through text-gray-400 ">
+              {item.mrpPrice}Ks
+            </span>
+            <span className="text-primary font-semibold">
+              {item.discountPercentage}%
+            </span>
           </div>
         </div>
       </div>

@@ -11,4 +11,10 @@ export const digitaldevicesLevelTwo = [
     parentCategoryId: "digitaldevices",
     level: 2,
   },
+  {
+    name: "Smart Watches",
+    categoryId: "smart-watches",
+    parentCategoryId: "digitaldevices",
+    level: 2,
+  },
 ];

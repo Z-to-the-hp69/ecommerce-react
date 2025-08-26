@@ -222,9 +222,11 @@ const Navbar = () => {
                 </h1>
               </Button>
             ) : (
-              <Button variant="contained">Login</Button>
+              <Button variant="contained" onClick={() => navigate("/login")}>
+                Login
+              </Button>
             )}
-            <IconButton>
+            <IconButton onClick={() => navigate("/wishlist")}>
               <FavoriteBorder sx={{ fontSize: 29 }} />
             </IconButton>
 

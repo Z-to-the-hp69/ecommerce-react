@@ -43,12 +43,23 @@ import { thunk } from "redux-thunk";
 import sellerProductSlice from "./seller/sellerProductSlice";
 import ProductSlice from "./customer/ProductSlice";
 import authSlice from "./AuthSlice";
+import cartSice from "./customer/cartSice";
+import orderSlice from "./customer/orderSlice";
+import wishlistSlice from "./customer/wishlistSlice";
+import sellerOrderSlice from "./seller/sellerOrderSlice";
+import transactionSlice from "./seller/transactionSlice";
 
 const rootReducer = combineReducers({
   seller: sellerSlice,
   sellerProduct: sellerProductSlice,
   product: ProductSlice,
   auth: authSlice,
+  cart: cartSice,
+  order: orderSlice,
+  wishlist: wishlistSlice,
+
+  sellerOrder: sellerOrderSlice,
+  transactions: transactionSlice,
 });
 
 const store = configureStore({

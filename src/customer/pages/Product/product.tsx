@@ -180,6 +180,23 @@ const Product = () => {
   const handleSortChange = (event: any) => setSort(event.target.value);
   const handlePageChange = (event: any, value: number) => setPage(value);
 
+  // useEffect(() => {
+  //   const color = searchParam.get("color");
+  //   const [minPrice, maxPrice] = searchParam.get("price")?.split("-") || [];
+  //   const minDiscount = searchParam.get("discount")
+  //     ? Number(searchParam.get("discount"))
+  //     : undefined;
+
+  //   const filter: any = {};
+  //   if (color) filter.color = color;
+  //   if (minPrice) filter.minPrice = Number(minPrice);
+  //   if (maxPrice) filter.maxPrice = Number(maxPrice);
+  //   if (minDiscount) filter.minDiscount = minDiscount;
+  //   filter.pageNumber = page - 1;
+  //   if (sort) filter.sort = sort;
+
+  //   dispatch(fetchAllProducts(filter));
+  // }, [category, searchParam, page, sort]);
   useEffect(() => {
     const color = searchParam.get("color");
     const [minPrice, maxPrice] = searchParam.get("price")?.split("-") || [];
@@ -188,6 +205,8 @@ const Product = () => {
       : undefined;
 
     const filter: any = {};
+
+    if (category) filter.category = category; // ✅ FIX: include category from URL
     if (color) filter.color = color;
     if (minPrice) filter.minPrice = Number(minPrice);
     if (maxPrice) filter.maxPrice = Number(maxPrice);

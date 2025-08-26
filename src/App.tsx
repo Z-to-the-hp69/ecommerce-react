@@ -24,6 +24,10 @@ import { useAppDispatch, useAppSelector } from "./State/Store";
 import { fetchSellerProfile } from "./State/seller/sellerSlice";
 import Auth from "./customer/pages/Auth/Auth";
 import { fetchUserProfile } from "./State/AuthSlice";
+import PaymentSuccess from "./customer/pages/PaymentSuccess";
+import Wishlist from "./customer/Wishlist/Wishlist";
+import { createHomeCategories } from "./State/customer/customerSlice";
+import { homeCategories } from "./data/HomeCategories";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -32,6 +36,7 @@ function App() {
   const navigate = useNavigate();
   useEffect(() => {
     dispatch(fetchSellerProfile(localStorage.getItem("jwt") || ""));
+    dispatch(createHomeCategories(homeCategories));
   }, []);
 
   useEffect(() => {
@@ -67,7 +72,12 @@ function App() {
             element={<ProductDetails />}
           />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route
+            path="/payment-success/:orderId"
+            element={<PaymentSuccess />}
+          />
           <Route path="/account/*" element={<Account />} />
           <Route path="/become-seller" element={<BecomeSeller />} />
           <Route path="/seller/*" element={<SellerDashBoard />} />

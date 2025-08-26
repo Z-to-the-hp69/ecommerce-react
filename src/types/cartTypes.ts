@@ -8,14 +8,14 @@ export interface CartItem {
   size: string;
   quantity: number;
   mrpPrice: number;
-  SellingPrice: number;
+  sellingPrice: number;
   userId: number;
 }
 
 export interface Cart {
   id: number;
   user: User;
-  carItems: CartItem[];
+  cartItems: CartItem[];
   totalSellingPrice: number;
   totalItem: number;
   totalMrpPrice: number;

@@ -1,10 +1,15 @@
-import React, { useState } from "react";
-import CartItem from "./CartItem";
+import React, { useEffect, useState } from "react";
+import CartItem from "./CartItemCard";
 import { Close, LocalOffer } from "@mui/icons-material";
 import { pink, red } from "@mui/material/colors";
-import { Button, IconButton, TextField } from "@mui/material";
+import { Button, Divider, IconButton, TextField } from "@mui/material";
 import PricingCart from "./PricingCart";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../../State/Store";
+import { fetchUserCart } from "../../../State/customer/cartSice";
+
+import CartItemCard from "./CartItemCard";
+import CartHeader from "./CartHeader";
 
 const Cart = () => {
   const [couponCode, setCouponCode] = useState("");
@@ -12,13 +17,30 @@ const Cart = () => {
   const handleChange = (e: any) => {
     setCouponCode(e.target.value);
   };
+
+  const dispatch = useAppDispatch();
+  const { cart } = useAppSelector((store) => store);
+
+  useEffect(() => {
+    dispatch(fetchUserCart(localStorage.getItem("jwt") || ""));
+  }, []);
+  // const jwt = localStorage.getItem("jwt");
+  // useEffect(() => {
+  //   if (jwt) {
+  //     dispatch(fetchUserCart(jwt));
+  //   }
+  // }, [dispatch, jwt]);
+
   return (
     <div className="pt-10 px-5 sm:px-10 md:px-60 min-h-screen">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         <div className="cartItemSection lg:col-span-2 space-y-3">
-          {[1, 1, 1, 1, 1, 1].map((item, index) => (
-            <CartItem key={index} />
+          {cart.cart?.cartItems.map((item, index) => (
+            <CartItemCard key={index} item={item} />
           ))}
+          {/* {cart.cart?.cartItems.map((item, index) => (
+            <CartItemCard key={index} item={item} jwt={jwt} />
+          ))} */}
         </div>
 
         <div className="col-span-1 text-sm space-y-3 ">

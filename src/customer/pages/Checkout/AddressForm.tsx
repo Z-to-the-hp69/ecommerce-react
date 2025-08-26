@@ -2,6 +2,8 @@ import { Box, Button, Grid, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import React from "react";
 import * as Yup from "yup";
+import { useAppDispatch } from "../../../State/Store";
+import { createOrder } from "../../../State/customer/orderSlice";
 
 const AddressFormSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
@@ -14,7 +16,7 @@ const AddressFormSchema = Yup.object().shape({
 
   pinCode: Yup.string()
     .required("Pin code is required")
-    .matches(/^[1-9][0-9]{6}$/, "Pin code must be 6 digits"),
+    .matches(/^[1-9][0-9]{5}$/, "Pin code must be 6 digits"),
 
   address: Yup.string().required("Address is required"),
   locality: Yup.string().required("Locality is required"),
@@ -24,7 +26,8 @@ const AddressFormSchema = Yup.object().shape({
   state: Yup.string().required("State is required"),
 });
 
-const AddressForm = () => {
+const AddressForm = ({ paymentGateway }: any) => {
+  const dispatch = useAppDispatch();
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -38,6 +41,14 @@ const AddressForm = () => {
     validationSchema: AddressFormSchema,
     onSubmit: (values) => {
       console.log(values);
+
+      dispatch(
+        createOrder({
+          address: values,
+          jwt: localStorage.getItem("jwt") || "",
+          paymentGateway,
+        })
+      );
     },
   });
 

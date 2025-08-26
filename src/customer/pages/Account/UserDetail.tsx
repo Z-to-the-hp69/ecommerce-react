@@ -1,8 +1,11 @@
 import React from "react";
 import ProfileFieldCard from "../../../component/ProfileFieldCard";
 import { Divider } from "@mui/material";
+import { useSelector } from "react-redux";
+import { useAppSelector } from "../../../State/Store";
 
 const UserDetail = () => {
+  const { auth } = useAppSelector((store) => store);
   return (
     <div className="flext justify-center  py-10">
       <div className="w-full lg:w-[70%]">
@@ -12,11 +15,11 @@ const UserDetail = () => {
           </h1>
         </div>
         <div className="">
-          <ProfileFieldCard keys="Name" value={"Zwe"} />
+          <ProfileFieldCard keys="Name" value={auth.user?.fullName || ""} />
           <Divider />
-          <ProfileFieldCard keys="Email" value={"zwehtet412@gmail.com"} />
+          <ProfileFieldCard keys="Email" value={auth.user?.email || ""} />
           <Divider />
-          <ProfileFieldCard keys="Mobile" value={"950577017"} />
+          <ProfileFieldCard keys="Mobile" value={auth.user?.mobile || ""} />
         </div>
       </div>
     </div>

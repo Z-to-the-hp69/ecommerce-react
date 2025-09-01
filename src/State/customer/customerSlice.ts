@@ -24,6 +24,7 @@ export const createHomeCategories = createAsyncThunk<HomeData, HomeCategory[]>(
   "home/createHomeCategories",
   async (homeCategories, { rejectWithValue }) => {
     try {
+      console.log("Payload being sent:", { categories: homeCategories });
       const response = await api.post("/home/categories", homeCategories);
       console.log("home categories", response.data);
       return response.data;
@@ -87,5 +88,25 @@ const homeSlice = createSlice({
     });
   },
 });
+
+// const homeSlice = createSlice({
+//   name: "home",
+//   initialState,
+//   reducers: {},
+//   extraReducers: (builder) => {
+//     builder.addCase(createHomeCategories.pending, (state) => {
+//       state.loading = true;
+//       state.error = null;
+//     });
+//     builder.addCase(createHomeCategories.fulfilled, (state, action) => {
+//       state.loading = false;
+//       state.homeCategories = action.payload.; // adjust if API returns differently
+//     });
+//     builder.addCase(createHomeCategories.rejected, (state, action) => {
+//       state.loading = false;
+//       state.error = (action.payload as string) || "Failed";
+//     });
+//   },
+// });
 
 export default homeSlice.reducer;

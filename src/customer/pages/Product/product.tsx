@@ -220,7 +220,9 @@ const Product = () => {
   return (
     <div className="z-10 mt-10">
       <h1 className="text-3xl text-center font-bold text-gray-700 pb-5 px-9 uppercase">
-        Men T-shirts
+        {/* Men T-shirts */}
+        {/* {product.products[0]?.title || "Product"} */}
+        {product.products[0]?.category?.name}
       </h1>
 
       <div className="lg:flex">
